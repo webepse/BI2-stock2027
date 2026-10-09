@@ -13,11 +13,11 @@
     <?php
         $req = $bdd->query("SELECT * FROM products");
         $datas = $req->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($datas);
+        //var_dump($datas);
         foreach($datas as $data){
             //var_dump($data);
             echo "<div class='title'>";
-                echo "<a href='product.php'>".$data['name']."</a>";
+                echo "<a href='product.php?id=".$data['id']."'>".$data['name']."</a>";
             echo "</div>";
         }
     ?>
