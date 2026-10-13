@@ -7,6 +7,13 @@
         exit();
     }
 
+    // tester si GET deco => dashboard.php?deco
+    if(isset($_GET['deco'])){
+        session_destroy();
+        header("Location: index.php");
+        exit();
+    }
+
 
 ?>
 
@@ -20,6 +27,9 @@
     <title>Stock - Administration : Tableau de bord</title>
 </head>
 <body>
-    <h1>Tableau bord</h1>
+    <div class="container">
+        <h1>Tableau bord</h1>
+        <a href="dashboard.php?deco=ok" class="btn btn-secondary">Déconnexion</a>
+    </div>
 </body>
 </html>

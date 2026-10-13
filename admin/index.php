@@ -1,6 +1,13 @@
 <?php
     session_start();
 
+    // vérifier si je suis déjà connecté
+    if(isset($_SESSION['login'])){
+        header("Location: dashboard.php");
+        exit();
+    }
+
+
     // vérifier si un formulaire a été envoyé
     if(isset($_POST['email']) && isset($_POST['password'])){
         // init une variable pour l'erreur
