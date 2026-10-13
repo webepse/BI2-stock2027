@@ -1,7 +1,9 @@
 <?php
     session_start();
+    // gardien de sécurité (as tu la session['login'] pour continuer?)
     if(!isset($_SESSION['login'])){
-        header("Location: ../404.php");
+        // RAPPEL : ../ c'est pour sortir du dossier
+        header("Location: ../403.php");
         exit();
     }
 
