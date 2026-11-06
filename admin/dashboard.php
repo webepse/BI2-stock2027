@@ -27,6 +27,9 @@
     <title>Stock - Administration : Tableau de bord</title>
 </head>
 <body>
+    <?php
+        include("partials/header.php");
+    ?>
     <div class="container">
         <h1>Tableau bord</h1>
         <a href="dashboard.php?deco=ok" class="btn btn-secondary">Déconnexion</a>
