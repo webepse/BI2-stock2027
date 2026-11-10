@@ -1,13 +1,14 @@
 <?php
     session_start();
     // gardien de sécurité (as tu la session['login'] pour continuer?)
+    // ! négation
     if(!isset($_SESSION['login'])){
         // RAPPEL : ../ c'est pour sortir du dossier
         header("Location: ../403.php");
         exit();
     }
 
-    require "../config/connexion.php";
+    //require "../config/connexion.php";
 
 ?>
 
@@ -28,6 +29,11 @@
         <h1>Ajouter une catégorie</h1>
         <a href="categories.php" class="btn btn-secondary">Retour</a>
         <form action="treatmentAddCategory.php" method="POST">
+            <?php
+                if(isset($_GET['error'])){
+                    echo "<div class='alert alert-danger my-3'>Une erreur est survenue (code erreur: ".$_GET['error'].")</div>";
+                }
+            ?>
             <div class="my-3">
                 <label for="name">Nom: </label>
                 <input type="text" name="name" id="name" class="form-control">
