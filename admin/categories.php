@@ -9,6 +9,29 @@
 
     require "../config/connexion.php";
 
+    // vérifier si dans l'url on a un GET['delete']
+    if(isset($_GET['delete']) && is_numeric($_GET['delete'])){
+        // $_GET['delete'] à comme valeur l'id de ce que l'utilisateur/administrateur veut supprimer
+
+        $verif = $bdd->prepare("SELECT * FROM categories WHERE id=?");
+        $verif->execute([$_GET['delete']]);
+        $verifData = $verif->fetch();
+
+        if(!$verifData){
+            header("Location: ../404.php");
+            exit();
+        }
+
+        // la donnée à supprimer existe bien
+        // supprimer la donnée
+        $delete = $bdd->prepare("DELETE FROM categories WHERE id=?");
+        $delete->execute([$_GET['delete']]);
+
+        // redirection avec message flash
+        header("Location: categories.php?deleteSuccess=".$_GET['delete']);
+        exit();
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +58,10 @@
             if(isset($_GET['updateSuccess'])){
                  echo "<div class='alert alert-warning my-3'>Vous avez bien modifié la catégorie id: ".$_GET['updateSuccess']."</div>";
             }
+
+            if(isset($_GET['deleteSuccess'])){
+                 echo "<div class='alert alert-danger my-3'>Vous avez bien supprimé la catégorie id: ".$_GET['deleteSuccess']."</div>";
+            }
         ?>
         <table class="table table-striped">
             <thead>
@@ -55,7 +82,7 @@
                             echo "<td>";
                                 // donner l'information de qui => utiliser un GET => GET['id']
                                 echo "<a href='updateCategory.php?id=".$data['id']."' class='btn btn-warning'>Modifier</a>";
-                                echo "<a href='' class='btn btn-danger mx-2'>Supprimer</a>";
+                                echo "<a href='categories.php?delete=".$data['id']."' class='btn btn-danger mx-2'>Supprimer</a>";
                             echo "</td>";
                         echo "</tr>";
                     }
