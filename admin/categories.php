@@ -31,6 +31,10 @@
             if(isset($_GET['addSuccess'])){
                 echo "<div class='alert alert-success my-3'>Vous avez bien ajouté une catégorie</div>";
             }
+
+            if(isset($_GET['updateSuccess'])){
+                 echo "<div class='alert alert-warning my-3'>Vous avez bien modifié la catégorie id: ".$_GET['updateSuccess']."</div>";
+            }
         ?>
         <table class="table table-striped">
             <thead>
@@ -49,7 +53,8 @@
                             echo "<td>".$data['id']."</td>";
                             echo "<td>".$data['name']."</td>";
                             echo "<td>";
-                                echo "<a href='' class='btn btn-warning'>Modifier</a>";
+                                // donner l'information de qui => utiliser un GET => GET['id']
+                                echo "<a href='updateCategory.php?id=".$data['id']."' class='btn btn-warning'>Modifier</a>";
                                 echo "<a href='' class='btn btn-danger mx-2'>Supprimer</a>";
                             echo "</td>";
                         echo "</tr>";

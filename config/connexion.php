@@ -4,7 +4,7 @@ try{
     
     // Pour Mac (avec Mamp)
     //$bdd = new PDO('mysql:host=localhost;dbname=bi2stock2027;charset=utf8mb4', 'root','root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    
+
 }catch(Exception $e){
     http_response_code(500);
     die("Erreur interne");
